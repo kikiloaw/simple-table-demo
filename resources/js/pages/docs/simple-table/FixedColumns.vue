@@ -1,6 +1,6 @@
 <script setup>
 import AppLayout from '@/layouts/AppLayout.vue';
-import SimpleTable from '@/package/SimpleTable/src/SimpleTable.vue';
+import SimpleTable from '@kikiloaw/simple-table';
 
 // Adding extra columns to force scrolling
 const columns = [

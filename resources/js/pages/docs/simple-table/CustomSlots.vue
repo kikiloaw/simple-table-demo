@@ -2,7 +2,7 @@
 import { computed, ref } from 'vue';
 import { Download, Trash2, Plus } from 'lucide-vue-next'; 
 import AppLayout from '@/layouts/AppLayout.vue';
-import SimpleTable from '@/package/SimpleTable/src/SimpleTable.vue';
+import SimpleTable from '@kikiloaw/simple-table';
 import { Button } from '@/components/ui/button';
 
 const columns = [
