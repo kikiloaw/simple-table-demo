@@ -4,16 +4,16 @@ import SimpleTable from '@kikiloaw/simple-table';
 
 // Adding extra columns to force scrolling
 const columns = [
-    { key: 'id', label: 'ID (Fixed)', sortable: true, width: '80px', fixed: true },
-    { key: 'name', label: 'Name (Fixed)', sortable: true, width: '180px', fixed: true },
-    { key: 'email', label: 'Email', width: '250px' },
-    { key: 'address', label: 'Address', width: '300px' }, 
-    { key: 'phone', label: 'Phone', width: '200px' },
-    { key: 'company', label: 'Company', width: '200px' },
-    { key: 'role', label: 'Role', width: '150px' },
-    { key: 'notes', label: 'Notes', width: '400px' },
-    { key: 'status', label: 'Status' },
-    { key: 'actions', label: 'Actions (Right Fixed)', fixed: true } // Auto-width!
+    { key: 'id', label: 'ID (Fixed)', sortable: true, width: '80px', fixed: true},
+    { key: 'name', label: 'Name (Fixed)', sortable: true, width: '180px', fixed: true, align: 'center' },
+    { key: 'email', label: 'Email', width: '250px', align: 'right'},
+    { key: 'address', label: 'Address', width: '300px', align: 'center' }, 
+    { key: 'phone', label: 'Phone', width: '200px'},
+    { key: 'company', label: 'Company', width: '200px', align: 'right' },
+    { key: 'role', label: 'Role', width: '150px', align: 'right' },
+    { key: 'notes', label: 'Notes', width: '400px', align: 'right' },
+    { key: 'status', label: 'Status', align: 'right' },
+    { key: 'actions', label: 'Actions (Right Fixed)',  fixed: true, } // Auto-width!
 ];
 
 // Generate static data
@@ -45,12 +45,12 @@ const enrichedUsers = Array.from({ length: 20 }, (_, i) => ({
                     <h3 class="text-lg font-medium mb-4">Fixed Columns</h3>
                     <p class="text-gray-500 mb-6">
                         Sticky columns allow you to keep key information visible while scrolling.
-                        <ul class="list-disc ml-5 mt-2 space-y-1">
-                            <li><strong>Left Sticky:</strong> Use <code>fixed: true</code> on the first columns.</li>
-                            <li><strong>Right Sticky:</strong> Use <code>fixed: true</code> on the last column.</li>
-                            <li><strong>Auto-Width:</strong> Sticky columns typically need a defined <code>width</code>, but <code>table-auto</code> allows "Actions" to fit buttons automatically!</li>
-                        </ul>
                     </p>
+                    <ul class="list-disc ml-5 mt-2 mb-6 space-y-1 text-gray-500">
+                        <li><strong>Left Sticky:</strong> Use <code>fixed: true</code> on the first columns.</li>
+                        <li><strong>Right Sticky:</strong> Use <code>fixed: true</code> on the last column.</li>
+                        <li><strong>Auto-Width:</strong> Sticky columns typically need a defined <code>width</code>, but <code>table-auto</code> allows "Actions" to fit buttons automatically!</li>
+                    </ul>
 
                     <div class="border p-5 mb-8">
                         <SimpleTable 

@@ -203,6 +203,63 @@ class SimpleTableDocsController extends Controller
         ]);
     }
 
+    // 9. Dynamic Columns
+    public function dynamicColumns()
+    {
+        return Inertia::render('docs/simple-table/DynamicColumns');
+    }
+
+    // API: Dynamic Columns Data
+    public function getDynamicColumnsData(Request $request)
+    {
+        // Define columns dynamically (could be from DB settings)
+        $columns = [
+            ['key' => 'id', 'label' => 'ID (#)', 'sortable' => true, 'width' => '80px'],
+            ['key' => 'name', 'label' => 'User Name (Dyn)', 'sortable' => true],
+            ['key' => 'email', 'label' => 'Contact Email', 'sortable' => true],
+            ['key' => 'role', 'label' => 'System Role'],
+            ['key' => 'department', 'label' => 'Dept.'], // Department column added
+            ['key' => 'status', 'label' => 'Current Status'],
+            ['key' => 'created_at', 'label' => 'Joined On', 'sortable' => true],
+        ];
+
+        // 1. Get Data
+        $data = $this->getFakeData(100);
+        $query = collect($data);
+
+        // 2. Search
+        if ($search = $request->input('search')) {
+            $query = $query->filter(function ($item) use ($search) {
+                return str_contains(strtolower($item['name']), strtolower($search)) ||
+                    str_contains(strtolower($item['email']), strtolower($search));
+            });
+        }
+
+        // 3. Sort
+        if ($sort = $request->input('sort')) {
+            $order = $request->input('order', 'asc');
+            $query = $order === 'asc' ? $query->sortBy($sort) : $query->sortByDesc($sort);
+        }
+
+        // 4. Pagination
+        $perPage = (int) $request->input('per_page', 10);
+        $page = (int) $request->input('page', 1);
+
+        $totalFiltered = $query->count();
+        $items = $query->forPage($page, $perPage)->values();
+
+        return response()->json([
+            'columns' => $columns, // <--- Injection of columns
+            'data' => $items,
+            'current_page' => $page,
+            'per_page' => $perPage,
+            'total' => $totalFiltered,
+            'last_page' => ceil($totalFiltered / $perPage),
+            'from' => ($page - 1) * $perPage + 1,
+            'to' => min($page * $perPage, $totalFiltered),
+        ]);
+    }
+
     private function getFakeData($count)
     {
         $data = [];

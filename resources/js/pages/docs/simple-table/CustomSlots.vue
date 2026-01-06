@@ -40,6 +40,8 @@ const getStatusColor = (status) => {
 
 const handleExport = (format, rows) => {
     alert(`Exporting ${rows.length} rows as ${format.toUpperCase()}...`);
+
+    console.log(rows);
 };
 
 const handleBulkDelete = (rows) => {

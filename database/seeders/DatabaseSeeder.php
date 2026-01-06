@@ -13,15 +13,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        // Check if user exists first to prevent duplicates on multiple runs
-        if (!User::where('email', 'test@example.com')->exists()) {
-            User::factory()->create([
-                'name' => 'Demo User',
-                'email' => 'test@example.com',
-                'password' => bcrypt('password'), // Ensure password is known
-            ]);
-        }
+        $this->call([
+            UserSeeder::class,
+            ClearanceGroupSeeder::class,
+            ClearanceItemSeeder::class,
+        ]);
     }
 }

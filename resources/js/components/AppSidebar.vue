@@ -69,6 +69,16 @@ const mainNavItems: NavItem[] = [
         href: '/docs/simple-table/group-headers-client-transform',
         icon: FolderTree,
     },
+    {
+        title: 'Dynamic Columns',
+        href: '/docs/simple-table/dynamic',
+        icon: LayoutGrid, // Reusing LayoutGrid or finding another like 'Columns' if available, but LayoutGrid is fine
+    },
+    {
+        title: 'Fahad Select',
+        href: '/docs/fahad-select',
+        icon: Database,
+    },
 ];
 
 const footerNavItems: NavItem[] = [
