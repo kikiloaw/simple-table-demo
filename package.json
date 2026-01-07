@@ -31,11 +31,10 @@
     },
     "dependencies": {
         "@inertiajs/vue3": "^2.1.0",
-        "@kikiloaw/simple-table": "file:resources/js/package/SimpleTable/kikiloaw-simple-table-1.1.1.tgz",
         "@vueuse/core": "^12.8.2",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
-        "fahad-select": "^3.3.0",
+        "fahad-select": "^3.4.2",
         "laravel-vite-plugin": "^2.0.0",
         "lucide-vue-next": "^0.468.0",
         "reka-ui": "^2.6.1",
