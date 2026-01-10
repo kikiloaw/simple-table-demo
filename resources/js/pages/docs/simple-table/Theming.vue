@@ -59,15 +59,28 @@ const data = [
                         />
                     </div>
 
+                    <!-- Example 3: Pink Theme & Custom Pagination -->
+                    <h4 class="font-medium mb-3">Custom Pagination Color (Pink)</h4>
+                    <div class="border p-5 rounded-lg mb-8">
+                        <SimpleTable 
+                            :data="data" 
+                            :columns="columns"
+                            odd-row-color="bg-pink-50/50"
+                            even-row-color="bg-white"
+                            hover-color="hover:bg-pink-100"
+                            pagination-color="#ec4899"
+                            :per-page="2"
+                        />
+                    </div>
+
                     <!-- Documentation -->
                     <div class="bg-slate-900 text-slate-50 p-6 rounded-lg overflow-x-auto" v-pre>
                         <h4 class="text-sm font-bold uppercase text-slate-400 mb-2">Code Example</h4>
 <pre><code class="language-vue">&lt;SimpleTable 
     :data="users" 
     :columns="columns"
-    odd-row-color="bg-blue-50/50"
-    even-row-color="bg-white"
-    hover-color="hover:bg-blue-100"
+    odd-row-color="bg-pink-50/50"
+    pagination-color="#ec4899"
 /&gt;</code></pre>
                     </div>
                 </div>
