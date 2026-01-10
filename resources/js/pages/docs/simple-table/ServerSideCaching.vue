@@ -13,11 +13,17 @@ const columns = [
 
 const tableRef = ref(null);
 
-const handleClearCache = () => {
+const handleClearCurrent = () => {
     if (tableRef.value) {
-        tableRef.value.clearCache();
+        tableRef.value.clearCache('current');
         tableRef.value.fetchData();
-        // We use fetchData() to reload current view. refresh() would reset to page 1.
+    }
+};
+
+const handleClearAll = () => {
+    if (tableRef.value) {
+        tableRef.value.clearCache('all'); // or just clearCache()
+        tableRef.value.fetchData();
     }
 };
 </script>
@@ -36,18 +42,26 @@ const handleClearCache = () => {
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
                     <div class="flex items-center justify-between mb-4">
                         <h3 class="text-lg font-medium">Server-Side Caching</h3>
-                        <button
-                            @click="handleClearCache"
-                            class="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-red-600 border border-red-200 bg-red-50 hover:bg-red-100 rounded transition-colors"
-                        >
-                            Clear Cache & Refresh
-                        </button>
+                        <div class="flex gap-2">
+                            <button
+                                @click="handleClearCurrent"
+                                class="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-600 border border-blue-200 bg-blue-50 hover:bg-blue-100 rounded transition-colors"
+                            >
+                                Clear Page Cache & Refresh
+                            </button>
+                            <button
+                                @click="handleClearAll"
+                                class="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-red-600 border border-red-200 bg-red-50 hover:bg-red-100 rounded transition-colors"
+                            >
+                                Clear All History
+                            </button>
+                        </div>
                     </div>
 
                     <p class="text-gray-500 mb-6">
-                        This table uses <code>enable-cache</code> and <code>cache-ttl="30000"</code> (30 seconds).
+                        This table uses <code>enable-cache</code>.
                         <br>
-                        Requests for the same page/sort/search will be served from client-side cache until it expires.
+                        Requests for the same page/sort/search will be served from client-side cache immediately.
                         Open your Network tab to verify that repeated actions don't trigger new API calls.
                     </p>
 
@@ -59,7 +73,6 @@ const handleClearCache = () => {
                             :searchable="true"
                             :per-page="10"
                             :enable-cache="true"
-                            :cache-ttl="30000"
                         />
                         <p class="text-xs text-muted-foreground mt-2">
                             <em>Try navigating to page 2, then back to page 1. The request indicator won't spin the second time!</em>
@@ -73,12 +86,17 @@ const handleClearCache = () => {
     fetch-url="/api/users"
     :columns="columns"
     :enable-cache="true"
-    :cache-ttl="60" 
-/&gt;</code></pre>
+/&gt;
+
+&lt;!-- Script --&gt;
+// Clear ONLY current page cache (keep history)
+tableRef.value.clearCache('current')
+
+// Clear EVERYTHING
+tableRef.value.clearCache('all')</code></pre>
                         <div class="mt-4 text-sm text-slate-400">
                             <ul class="list-disc ml-5 space-y-1">
                                 <li><code>enable-cache</code>: Boolean. Turns on the response cache.</li>
-                                <li><code>cache-ttl</code>: Number (Seconds). How long to keep data valid (Default: 300s).</li>
                             </ul>
                         </div>
                     </div>

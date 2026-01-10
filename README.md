@@ -76,6 +76,7 @@ Follow these steps to set up the documentation site locally.
 - **Server-Side Data**: Searching, sorting, and pagination via API.
 - **Theming**: Customizing row colors and hover effects.
 - **Caching**: Client-side caching for server responses to improve performance.
+    - **Granular Control**: Learn how to clear cache for the current page vs the entire history.
 - **Group Headers**: 
     - **Server-Side**: Injecting header rows directly from the backend.
     - **Client-Side**: Using `before-render` to transform data in the browser.
