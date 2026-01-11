@@ -35,7 +35,7 @@ const columns = [
                             Note: We use the full route path for fetch-url.
                             Ensure your API returns { data: [], recordsTotal, recordsFiltered } 
                         -->
-                        <SimpleTable 
+                        <SimpleTable
                             fetch-url="/docs/simple-table/data"
                             :columns="columns" 
                             :searchable="true"
